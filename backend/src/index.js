@@ -64,7 +64,7 @@ let io = null;
 try {
   io = new Server(httpServer, {
     cors: { origin: allowedOrigins, methods: ["GET", "POST"] },
-    transports: IS_PRODUCTION ? ["polling"] : ["websocket", "polling"],
+    transports: ["websocket", "polling"],
   });
 } catch (err) {
   console.warn(
@@ -193,9 +193,7 @@ const startServer = async () => {
   }
 };
 
-if (!IS_PRODUCTION) {
-  startServer();
-}
+startServer();
 
 // Export for Vercel
 export default app;
